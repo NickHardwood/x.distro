@@ -8,7 +8,7 @@ BASE_IMAGE_TAG		?= $(BASE_IMAGE_OS_VERSION)
 
 
 
-BASE_IMAGE_OS_NAME	?= Clear
+BASE_IMAGE_OS_NAME	?= Clear Linux
 
 BASE_IMAGE_OS_URL	?= https://clearlinux.org
 

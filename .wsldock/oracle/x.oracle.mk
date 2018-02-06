@@ -8,7 +8,7 @@ BASE_IMAGE_TAG		?= $(BASE_IMAGE_OS_VERSION)
 
 
 
-BASE_IMAGE_OS_NAME	?= Oracle
+BASE_IMAGE_OS_NAME	?= Oracle Linux
 
 BASE_IMAGE_OS_URL	?= https://oracle/linux/index.html
 
