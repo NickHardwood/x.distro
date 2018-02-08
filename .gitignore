@@ -2,4 +2,5 @@
 
 # Add directories to exclude from vcs
 .examples/
+build/
 scripts/__pycache__
