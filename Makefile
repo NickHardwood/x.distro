@@ -104,6 +104,8 @@ setup:
 run_sublime:
 
 run_vscode:
+	$(info Running VSCode for $(PROJECT) v$(VERSION)...)
+	@docker run --rm -e DISPLAY=10.0.75.1:0.0 -v /d/Projects:/code jess/vscode
 
 run_test:
 
