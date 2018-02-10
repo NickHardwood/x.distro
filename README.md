@@ -42,15 +42,23 @@ A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 
 The pupose of this project is to provide developers with an easy way to leverage Microsoft's Windows Subsystem for Linux (WSL). x.Distro allows building, installing and launching any GNU/Linux distribution userspace in WSL using RootFS tarballs, :package: Docker Containers :whale: or ISO files. :cd:
 
-x.Distro also allows using the same RootFS to build base Docker containers effectively providing a single development environment to maintain base WSL and Docker filesystems.
+x.Distro also allows using the same RootFS to build base Docker images effectively providing a single development environment to maintain base WSL and Docker filesystems.
 
 ### Project Goals
 
-The goal of this project is to provide developers with the ability to just download a distibution, unzip and run it or to run standard Docker commands to duplicate the same environment inside a container. This will allow side by side running of Linux systems and fast turn around times for developing in WSL and Docker.
+The goal of this project is to provide developers with the ability to just download a distibution, unzip and run it or to run standard Docker commands to duplicate the same environment inside a container. This will allow side by side deployment of Linux systems and Docker containers with fast turn around times for developing in WSL and Docker.
 
 ### OSS Projects Used
 
-The x.Distro Project attempts to combine the best in class open source projects that provide meaningful usage within our project scope. The following OSS projects have been chosen for inclusion.
+The x.Distro Project attempts to combine the relevant open source projects that provide meaningful usage within our project scope. The following OSS projects have been chosen for inspiration or inclusion.
+
+1. [WSL-DistroLauncher]
+2. [WSL-Distibution-Switcher]
+3. [LxRunOffline]
+4. [WSLInstall]
+5. [CPP-Basic_Project-Template]
+6. [CXX-Boilerplate]
+7. [Docker-BaseImage]
 
 **This list is a moving target and may be updated as the project moves forward to add or delete projects as the needs become clearer.**
 
