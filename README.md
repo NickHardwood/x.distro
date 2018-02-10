@@ -52,13 +52,14 @@ The goal of this project is to provide developers with the ability to just downl
 
 The x.Distro Project attempts to combine the relevant open source projects that provide meaningful usage within our project scope. The following OSS projects have been chosen for inspiration or inclusion.
 
-1. [WSL-DistroLauncher]
-2. [WSL-Distibution-Switcher]
-3. [LxRunOffline]
-4. [WSLInstall]
-5. [CPP-Basic_Project-Template]
-6. [CXX-Boilerplate]
-7. [Docker-BaseImage]
+1. [WSL-DistroLauncher](https://github.com/yuk7/WSL-DistroLauncher.git)
+2. [WSL-Distibution-Switcher](https://github.com/RoliSoft/WSL-Distribution-Switcher)
+3. [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline.git)
+4. [WSLInstall](https://github.com/Biswa96/WSLInstall)
+5. [CPP-Basic_Project-Template](https://github.com/arreisGit/cpp-basic-project-template)
+6. [CPP-Boilerplate](https://github.com/bamorim/cpp-boilerplate)
+7. [CXX-Boilerplate](https://github.com/tijme/cxx-boilerplate)
+8. [Docker-BaseImage](https://github.com/sicz/docker-baseimage)
 
 **This list is a moving target and may be updated as the project moves forward to add or delete projects as the needs become clearer.**
 
