@@ -64,7 +64,6 @@ RESDIR		:= resources
 CIDIR		:= .ci
 HUBDIR		:= .github
 LABDIR		:= .gitlab
-WSLDOCK		:= .wsldock
 
 # set directory structure of source directories
 BASE		:= $(BASEDIR)
@@ -101,5 +100,11 @@ clean:
 	@echo "Cleaning of $(PROJECT) v$(VERSION) completed..."
 
 setup:
+
+run_sublime:
+
+run_vscode:
+
+run_test:
 
 ################################################################################
