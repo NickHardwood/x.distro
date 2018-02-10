@@ -40,7 +40,7 @@ A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 
 ## Introduction
 
-The pupose of this project is to provide developers with an easy way to leverage Microsoft's Windows Subsystem for Linux (WSL). x.Distro allows building, installing and launching any GNU/Linux distribution userspace in WSL using RootFS tarballs, :packages: Docker Containers :whale: or ISO files :cd:
+The pupose of this project is to provide developers with an easy way to leverage Microsoft's Windows Subsystem for Linux (WSL). x.Distro allows building, installing and launching any GNU/Linux distribution userspace in WSL using RootFS tarballs, :package: Docker Containers :whale: or ISO files :cd:
 
 ### Project Goals
 
