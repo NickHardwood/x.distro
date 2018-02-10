@@ -5,3 +5,4 @@
 bin/
 build/
 scripts/__pycache__
+spike/
