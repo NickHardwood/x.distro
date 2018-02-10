@@ -1,4 +1,4 @@
-![Logo](doc/images/logo.png)
+![Launchers](doc/images/launchers.png)
 
 # X.Distro Docker and Windows Subsystem for Linux Distributions
 A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
@@ -11,8 +11,8 @@ A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 | Travis                      | Linux / OS X | [![Build Status](https://travis-ci.org/xentafx/xenta.template.svg?branch=master)](https://travis-ci.org/xentafx/xenta.template)                                     | [![Build Status](https://travis-ci.org/xentafx/xenta.template.svg?branch=dmz)](https://travis-ci.org/xentafx/xenta.template)                                        |
 | GitLab                      | Windows      | [![Build Status](https://gitlab.com/xentafx/xenta.template/badges/master/pipeline.svg)](https://gitlab.com/xentafx/xenta.template/commits/master)                   | [![Build Status](https://gitlab.com/xentafx/xenta.template/badges/dmz/pipeline.svg)](https://gitlab.com/xentafx/xenta.template/commits/dmz) &nbsp;                  |
 
-### Preview of running distro launchers
-![Launchers](doc/images/launchers.png)
+### Preview of project logo
+![Launchers](doc/images/logo.png)
 
 ## Table of Contents
 
