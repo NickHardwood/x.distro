@@ -1,6 +1,7 @@
 ![Logo](doc/images/logo.png)
 
 # X.Distro Docker and Windows Subsystem for Linux Distributions
+A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 
 ## Continuous integration
 
