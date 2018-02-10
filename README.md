@@ -1,6 +1,6 @@
 ![Launchers](doc/images/launchers.png)
 
-# X.Distro Docker and Windows Subsystem for Linux Distributions
+# x.Distro Docker and Windows Subsystem for Linux Distributions
 A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 
 ## Continuous integration
@@ -40,15 +40,17 @@ A General Purpose Docker & WSL Base Distribution Builder, Installer & Launcher
 
 ## Introduction
 
-The pupose of this project is to provide developers with an easy way to leverage Microsoft's Windows Subsystem for Linux (WSL). x.Distro allows building, installing and launching any GNU/Linux distribution userspace in WSL using RootFS tarballs, :package: Docker Containers :whale: or ISO files :cd:
+The pupose of this project is to provide developers with an easy way to leverage Microsoft's Windows Subsystem for Linux (WSL). x.Distro allows building, installing and launching any GNU/Linux distribution userspace in WSL using RootFS tarballs, :package: Docker Containers :whale: or ISO files. :cd:
+
+x.Distro also allows using the same RootFS to build base Docker containers effectively providing a single development environment to maintain base WSL and Docker filesystems.
 
 ### Project Goals
 
-State the goals and mission of the project
+The goal of this project is to provide developers with the ability to just download a distibution, unzip and run it or to run standard Docker commands to duplicate the same environment inside a container. This will allow side by side running of Linux systems and fast turn around times for developing in WSL and Docker.
 
 ### OSS Projects Used
 
-The {NAME} Project attempts to combine the best in class open source projects that provide meaningful usage within our project scope. The following OSS projects have been chosen for inclusion.
+The x.Distro Project attempts to combine the best in class open source projects that provide meaningful usage within our project scope. The following OSS projects have been chosen for inclusion.
 
 **This list is a moving target and may be updated as the project moves forward to add or delete projects as the needs become clearer.**
 
