@@ -1,6 +1,6 @@
 ![Logo](doc/images/logo.png)
 
-Xenta.Template is a generic project template used as a base for all xenta projects. 
+# X.Distro Docker and Windows Subsystem for Linux Distributions
 
 ## Continuous integration
 
@@ -10,7 +10,7 @@ Xenta.Template is a generic project template used as a base for all xenta projec
 | Travis                      | Linux / OS X | [![Build Status](https://travis-ci.org/xentafx/xenta.template.svg?branch=master)](https://travis-ci.org/xentafx/xenta.template)                                     | [![Build Status](https://travis-ci.org/xentafx/xenta.template.svg?branch=dmz)](https://travis-ci.org/xentafx/xenta.template)                                        |
 | GitLab                      | Windows      | [![Build Status](https://gitlab.com/xentafx/xenta.template/badges/master/pipeline.svg)](https://gitlab.com/xentafx/xenta.template/commits/master)                   | [![Build Status](https://gitlab.com/xentafx/xenta.template/badges/dmz/pipeline.svg)](https://gitlab.com/xentafx/xenta.template/commits/dmz) &nbsp;                  |
 
-### Preview of any media used in the project i.e screenshots, video
+### Preview of running distro launchers
 ![Launchers](doc/images/launchers.png)
 
 ## Table of Contents
