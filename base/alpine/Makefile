@@ -12,7 +12,7 @@ DOCKER_VERSIONS		?= 3.7 3.6 3.5 3.4 3.3 3.2 3.1 edge
 
 
 
-PROJECT_DIR		?= $(abspath ..)
+PROJECT_DIR		?= $(abspath ../..)
 
 include $(PROJECT_DIR)/x.variant.mk
 
