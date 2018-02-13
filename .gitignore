@@ -4,5 +4,6 @@
 .examples/
 bin/
 build/
+dist/
 scripts/__pycache__
 spike/
