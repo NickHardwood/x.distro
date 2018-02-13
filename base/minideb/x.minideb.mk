@@ -17,9 +17,8 @@ BASE_IMAGE_OS_URL	?= https://bitnami.com
 ### BUILD #######################################################################
 
 
-BUILD_VARS		+= SU_EXEC_VERSION \
-
-			   TINI_VERSION
+BUILD_VARS		+= 	SU_EXEC_VERSION \
+					TINI_VERSION
 
 ### MK_DOCKER_IMAGE #############################################################
 
