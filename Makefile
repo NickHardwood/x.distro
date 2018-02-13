@@ -77,41 +77,41 @@ TESTS		:= $(shell find $(TESTDIR) -type f -name *.$(SRCEXT))
 
 # base docker image variants
 
-X_VARIANTS			+= alpine \
-					   arch \
-					   busybox \
-					   centos \
-					   clear \
-					   crux \
-					   debian \
-					   euleros \
-					   fedora \
-					   gentoo \
-					   kali \
-					   mageia \
-					   manjaro \
-					   minideb \
-					   opensuse \
-					   oracle \
-					   sabayon \
-					   turnkey \
-					   ubuntu
+X_VARIANTS 	+= alpine \
+		arch \
+		busybox \
+		centos \
+		clear \
+		crux \
+		debian \
+		euleros \
+		fedora \
+		gentoo \
+		kali \
+		mageia \
+		manjaro \
+		minideb \
+		opensuse \
+		oracle \
+		sabayon \
+		turnkey \
+		ubuntu
 
 
 # Make targets propagated to all Docker image variants
 
-X_VARIANT_TARGETS		+= build \
-						   rebuild \
-						   ci \
-						   clean \
-						   docker-pull \
-						   docker-pull-baseimage \
-						   docker-pull-dependencies \
-						   docker-pull-image \
-						   docker-pull-testimage \
-						   docker-push \
-						   docker-load-image \
-						   docker-save-image
+X_VARIANT_TARGETS 	+= build \
+			rebuild \
+			ci \
+			clean \
+			docker-pull \
+			docker-pull-baseimage \
+			docker-pull-dependencies \
+			docker-pull-image \
+			docker-pull-testimage \
+			docker-push \
+			docker-load-image \
+			docker-save-image
 
 ### MAKE_TARGETS ###############################################################
 
@@ -119,41 +119,21 @@ X_VARIANT_TARGETS		+= build \
 help: x-help
   include $(SCRIPTDIR)/x-help.mk
 
-all:
+# Build all images and run all tests
+.PHONY: all
 
-build: $(BUILD_NAME)
+all: ci
 
-$(BUILD_NAME):
-	$(info Building $(PROJECT) v$(VERSION)...)
-	@mkdir $(BUILDDIR) $(BUILDDIR)/$(RESDIR)/ $(BUILDDIR)/$(DISTDIR) $(BUILDDIR)/$(BINDIR)
-	@$(COMPILE) $(SOURCES) -o $(BUILDDIR)/$(BINDIR)/launcher.exe
-	@find  $(BASE)/* -maxdepth 1 -type d -printf '%f\n' > $(BUILDDIR)/resl.txt
-	@xargs -a $(BUILDDIR)/resl.txt -I{} $(CRES) $(BASE)/{}/res.rc -o $(BUILDDIR)/$(RESDIR)/{}.o
-	@xargs -a $(BUILDDIR)/resl.txt -I{} $(COMPILE) $(SOURCES) $(BUILDDIR)/$(RESDIR)/{}.o -o $(BUILDDIR)/$(BINDIR)/{}.exe
-	# @xargs -a .dist.dir -I{} mkdir $(DISTDIR)/{}
-	# @xargs -a .dist.touch -I{} touch $(DISTDIR)/{}
-	@xargs -a $(BUILDDIR)/resl.txt -I{} mkdir $(BUILDDIR)/$(DISTDIR)/{}
-	@xargs -a $(BUILDDIR)/resl.txt -I{} cp $(BUILDDIR)/$(BINDIR)/{}.exe $(BUILDDIR)/$(DISTDIR)/{}/{}.exe
-	
-	@echo "Creating zip file of $(PROJECT) v$(VERSION) executables..."
-	@cd $(BUILDDIR)/$(BINDIR)/ && zip ../launchers.zip *
-	@cd ../../
-	@echo "Zip file creation for $(PROJECT) v$(VERSION) executables completed..."
-	@echo "Building of $(PROJECT) v$(VERSION) completed..."
-
-clean:
-	$(info Cleaning of $(PROJECT) v$(VERSION)...)
-	@rm -rf $(BUILDDIR)
-	@echo "Cleaning of $(PROJECT) v$(VERSION) completed..."
-
-setup:
-
-run_sublime:
+# Subdir targets
+.PHONY: $(X_VARIANT_TARGETS)
+$(X_VARIANT_TARGETS):
+	@for X_VARIANT in $(X_VARIANTS); do \
+		cd $(CURDIR)/$(BASE)/$${X_VARIANT}; \
+		$(MAKE) $@; \
+	done
 
 run_vscode:
 	$(info Running VSCode for $(PROJECT) v$(VERSION)...)
 	@docker run --rm -e DISPLAY=10.0.75.1:0.0 -v /d/Projects:/code jess/vscode
-
-run_test:
 
 ################################################################################
