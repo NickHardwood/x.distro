@@ -5,7 +5,7 @@
 
 ### PROJECT ####################################################################
 
-PROJECT			:= x.Distro
+PROJECT			:= $(shell cat .dist.project)
 VERSION			:= $(shell cat .dist.semver)
 COPYRIGHT		:= $(shell cat .dist.copyright)
 BUILD_NAME		:= $(shell echo $(PROJECT) | tr A-Z a-z)
