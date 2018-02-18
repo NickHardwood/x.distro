@@ -20,6 +20,6 @@ BUILD_VARS		+= 	SU_EXEC_VERSION \
 
 ### MK_DOCKER_IMAGE #############################################################
 
-include $(PROJECT_DIR)/x.version.mk
+include $(PROJECT_DIR)/$(SCRIPT_DIR)/$(MK_DIR)/x.version.mk
 
 #################################################################################

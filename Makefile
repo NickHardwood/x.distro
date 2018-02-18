@@ -60,6 +60,7 @@ TESTDIR 	:= test
 
 # set directory structure of utility directories
 RESDIR		:= resources
+MKDIR		:= mk
 
 # set directory structure of hidden directories
 CIDIR		:= .ci
@@ -117,7 +118,7 @@ X_VARIANT_TARGETS 	+= build \
 
 # shows this information and displays usage
 help: x-help
-  include $(SCRIPTDIR)/x-help.mk
+  include $(SCRIPTDIR)/$(MKDIR)/x.help.mk
 
 # Build all images and run all tests
 .PHONY: all

@@ -11,6 +11,8 @@ BASE_IMAGE_OS_VERSION	?= 3.1
 
 
 PROJECT_DIR		?= $(abspath ../../..)
+SCRIPT_DIR		:= scripts
+MK_DIR			:= mk
 
 include ../x.alpine.mk
 

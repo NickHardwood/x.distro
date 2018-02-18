@@ -19,6 +19,9 @@ DOCKER_IMAGE_TAGS	?= latest
 
 
 PROJECT_DIR		?= $(abspath ../../..)
+SCRIPT_DIR		:= scripts
+MK_DIR			:= mk
+
 
 include ../x.alpine.mk
 
