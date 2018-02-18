@@ -3,17 +3,7 @@
 # the default target of this Makefile is...
 .DEFAULT_GOAL := help
 
-### PROJECT ####################################################################
-
-PROJECT			:= $(shell cat .dist.project)
-VERSION			:= $(shell cat .dist.semver)
-COPYRIGHT		:= $(shell cat .dist.copyright)
-BUILD_NAME		:= $(shell echo $(PROJECT) | tr A-Z a-z)
-
 ### SHELL ######################################################################
-
-# setting top-level {root} project directory
-TOP=${shell pwd}
 
 # Replace Debian Almquist Shell with Bash
 ifeq ($(realpath $(SHELL)),/bin/dash)
@@ -25,60 +15,14 @@ endif
 # .SHELLFLAGS		= -ec
 SHELL			+= -e
 
-# detect OS for use in cross platform builds
-UNAME_S =$(shell uname -s)
-UNAME_M =$(shell uname -m)
-UNAME_O =$(shell uname -o)
-UNAME_R =$(shell uname -r)
-UNAME_P =$(shell uname -p)
-UNAME_V =$(shell uname -v)
-
-### COMPILER ###################################################################
-
-CC			:= x86_64-w64-mingw32-gcc
-CRES		:= x86_64-w64-mingw32-windres
-CFLAGS		:= 
-INC			:= -I include
-
-COMPILE		:= $(CC) $(CFLAGS) $(INC)
-SRCEXT		:= c
-HEADEXT		:= h
-
-### FILESYSTEM #################################################################
-
-# set directory structure of source distribution
-BASEDIR		:= base
-BINDIR		:= bin
-BUILDDIR	:= build
-CONFIGDIR	:= config
-DISTDIR		:= dist
-DOCSDIR		:= doc
-INCDIR		:= include
-SCRIPTDIR	:= scripts
-SRCDIR		:= src
-TESTDIR 	:= test
-
-# set directory structure of utility directories
-RESDIR		:= resources
-MKDIR		:= mk
-
-# set directory structure of hidden directories
-CIDIR		:= .ci
-HUBDIR		:= .github
-LABDIR		:= .gitlab
-
-# set directory structure of source directories
-BASE		:= $(BASEDIR)
-DIST		:= $(DISTDIR)
-SOURCES 	:= $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-TESTS		:= $(shell find $(TESTDIR) -type f -name *.$(SRCEXT))
-
+# import base properties
+include ./scripts/mk/x.properties.mk
 
 ### BASE_DOCKER_VARIANTS #######################################################
 
 # base docker image variants
 
-X_VARIANTS 	+= alpine \
+BASE_VARIANTS 	+= alpine \
 		arch \
 		busybox \
 		centos \
@@ -101,24 +45,24 @@ X_VARIANTS 	+= alpine \
 
 # Make targets propagated to all Docker image variants
 
-X_VARIANT_TARGETS 	+= build \
-			rebuild \
-			ci \
-			clean \
-			docker-pull \
-			docker-pull-baseimage \
-			docker-pull-dependencies \
-			docker-pull-image \
-			docker-pull-testimage \
-			docker-push \
-			docker-load-image \
-			docker-save-image
+BASE_VARIANT_TARGETS 	+= build \
+				rebuild \
+				ci \
+				clean \
+				docker-pull \
+				docker-pull-baseimage \
+				docker-pull-dependencies \
+				docker-pull-image \
+				docker-pull-testimage \
+				docker-push \
+				docker-load-image \
+				docker-save-image
 
 ### MAKE_TARGETS ###############################################################
 
 # shows this information and displays usage
 help: x-help
-  include $(SCRIPTDIR)/$(MKDIR)/x.help.mk
+  include $(SCRIPT_DIR)/$(MK_DIR)/x.help.mk
 
 # Build all images and run all tests
 .PHONY: all
@@ -126,12 +70,57 @@ help: x-help
 all: ci
 
 # Subdir targets
-.PHONY: $(X_VARIANT_TARGETS)
-$(X_VARIANT_TARGETS):
-	@for X_VARIANT in $(X_VARIANTS); do \
-		cd $(CURDIR)/$(BASE)/$${X_VARIANT}; \
+.PHONY: $(BASE_VARIANT_TARGETS)
+$(BASE_VARIANT_TARGETS):
+	@for BASE_VARIANT in $(BASE_VARIANTS); do \
+		cd $(CURRENT_DIR)/$(BASE_DIR)/$${BASE_VARIANT}; \
 		$(MAKE) $@; \
 	done
+
+.PHONY: create
+create:
+	@if [ -z "$(NAME)" ]; then \
+		$(ECHO) "ERROR: Docker project NAME must be defined"; \
+		$(ECHO); \
+		$(MAKE) help; \
+		$(ECHO); \
+		exit 1; \
+	fi
+	@if [ -e ../$(NAME) -a "$(OVERWRITE)" != "yes" ]; then \
+		$(ECHO) "ERROR: The directory $(DOCKER_DIR)/$(NAME) exist"; \
+		$(ECHO); \
+		$(MAKE) help; \
+		$(ECHO); \
+		exit 1; \
+	fi
+	@mkdir -p $(DOCKER_DIR)
+	@mkdir -p $(DOCKER_DIR)/$(NAME)
+	cp -afv $(CONFIG_DIR)/sample/. $(DOCKER_DIR)/$(NAME)
+
+launcher: $(BUILD_NAME)
+
+$(BUILD_NAME):
+	$(info Building $(PROJECT) v$(VERSION)...)
+	@mkdir $(BUILD_DIR) $(BUILD_DIR)/$(RES_DIR)/ $(BUILD_DIR)/$(DIST_DIR) $(BUILD_DIR)/$(BIN_DIR) $(WSL_DIR)
+	@$(COMPILE) $(SOURCES) -o $(BUILD_DIR)/$(BIN_DIR)/launcher.exe
+	@find  $(BASE_DIR)/* -maxdepth 0 -type d -printf '%f\n' > $(BUILD_DIR)/resl.txt
+	@xargs -a $(BUILD_DIR)/resl.txt -I{} $(CRES) $(BASE_DIR)/{}/res.rc -o $(BUILD_DIR)/$(RES_DIR)/{}.o
+	@xargs -a $(BUILD_DIR)/resl.txt -I{} $(COMPILE) $(SOURCES) $(BUILD_DIR)/$(RES_DIR)/{}.o -o $(BUILD_DIR)/$(BIN_DIR)/{}.exe
+	@xargs -a $(BUILD_DIR)/resl.txt -I{} mkdir $(WSL_DIR)/{}
+	@xargs -a $(BUILD_DIR)/resl.txt -I{} cp $(BUILD_DIR)/$(BIN_DIR)/{}.exe $(WSL_DIR)/{}/{}.exe
+	
+	@cd $(BUILD_DIR)/$(BIN_DIR)/ && zip ../launchers.zip *
+	@cd ../../
+
+distclean:
+	$(info Cleaning of $(PROJECT) v$(VERSION)...)
+	@rm -rf $(BUILD_DIR)
+	@rm -rf $(DOCKER_DIR)
+	@rm -rf $(WSL_DIR)
+
+mostlyclean:
+	$(info Cleaning of $(PROJECT) v$(VERSION)...)
+	@rm -rf $(BUILD_DIR)
 
 run_vscode:
 	$(info Running VSCode for $(PROJECT) v$(VERSION)...)
