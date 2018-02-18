@@ -1,0 +1,22 @@
+# -*- mode: sh -*-
+
+# Do not bell on tab-completion
+set bell-style none
+
+# Handle 8-bit input
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+# Completed names which are symbolic links to
+# directories have a slash appended.
+set mark-symlinked-directories on
+
+# Clever history browsing
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Alt Left or Right jumps to next word
+"^[OD" backward-word
+"^[OC" forward-word

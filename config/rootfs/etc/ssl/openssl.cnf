@@ -1,0 +1,44 @@
+# The [default] section contains global constants that can be referred to from
+# the entire configuration file. It may also hold settings pertaining to more
+# than one openssl command.
+
+[ default ]
+dir                     = /etc/ssl
+
+# The next part of the configuration file is used by the openssl req command.
+
+[ req ]
+default_bits            = 2048                  # RSA key size
+encrypt_key             = yes                   # Protect private key
+default_md              = sha256                # MD to use
+utf8                    = yes                   # Input is UTF-8
+string_mask             = utf8only              # Emit UTF-8 strings
+distinguished_name      = req_dn                # DN section
+req_extensions          = req_ext               # Desired extensions
+x509_extensions         = cert_ext              # Self-signed certificate extensions
+
+[ req_dn ]
+countryName             = Country Name (2 letter code)
+countryName_min         = 2
+countryName_max         = 2
+organizationName        = Organization Name (eg, company)
+organizationName_max    = 64
+commonName              = Common Name (e.g. server FQDN or YOUR name)
+commonName_max          = 64
+emailAddress            = Email Address
+emailAddress_max        = 64
+
+[ req_ext ]
+keyUsage                = critical,dataEncipherment,digitalSignature,keyAgreement,keyEncipherment
+extendedKeyUsage        = critical,clientAuth,emailProtection,serverAuth
+basicConstraints        = critical,CA:false
+subjectKeyIdentifier    = hash
+
+# Certificate extensions define what types of certificates could be created.
+
+[ cert_ext ]
+authorityKeyIdentifier  = keyid:always
+basicConstraints        = critical,CA:false
+extendedKeyUsage        = critical,clientAuth,emailProtection,serverAuth
+keyUsage                = critical,dataEncipherment,digitalSignature,keyAgreement,keyEncipherment
+subjectKeyIdentifier    = hash

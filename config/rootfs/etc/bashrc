@@ -1,0 +1,52 @@
+# -*- mode: sh -*-
+
+# do not bell on tab-completion
+set bell-style none
+
+# Handle 8-bit in readline
+set convert-meta off
+set input-meta on
+set meta-flag on
+set output-meta on
+
+# Ask before rm *
+set rmstar
+
+# Completed names which are symbolic links to
+# directories have a slash appended.
+set mark-symlinked-directories on
+
+export EDITOR=vi
+export HISTSIZE=1000
+export HISTFILESIZE=100000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE='exit'
+export PAGER=less
+
+umask 022
+
+# Are we an interactive shell?
+if [ "$PS1" ]; then
+
+  # Turn on parallel history
+  shopt -s histappend
+  history -a
+
+  # Turn on checkwinsize
+  shopt -s checkwinsize
+
+  export PS1="\u@\h:\w\\$ "
+fi
+
+# Skip remaining setup if not an interactive shell
+if [ ! -t 0 ]; then
+  exit
+fi
+
+alias cls=clear
+
+alias ls="ls -h"
+alias ll="ls -al"
+alias lld="ls -adl"
+
+alias more=${PAGER}

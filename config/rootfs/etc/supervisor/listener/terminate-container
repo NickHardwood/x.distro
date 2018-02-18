@@ -1,0 +1,36 @@
+#!/usr/bin/python
+import sys
+import os
+import signal
+
+def write_stdout(s):
+    sys.stdout.write(s)
+    sys.stdout.flush()
+
+def write_stderr(s):
+    sys.stderr.write(s)
+    sys.stderr.flush()
+
+def main():
+    while 1:
+        # Transition from ACKNOWLEDGED to READY
+        write_stdout('READY\n')
+
+        # Read header line and print it to stderr
+        line = sys.stdin.readline()
+        write_stderr(line)
+
+        # Read event payload and print it to stderr
+        headers = dict([ x.split(':') for x in line.split() ])
+        data = sys.stdin.read(int(headers['len']))
+        write_stderr(data)
+
+        # Terminate container
+        os.kill(1, signal.SIGTERM)
+
+        # Transition from READY to ACKNOWLEDGED
+        write_stdout('RESULT 2\nOK')
+
+if __name__ == '__main__':
+    main()
+    import sys
